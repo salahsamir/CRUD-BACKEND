@@ -5,3 +5,5 @@ export const ProductRouter=Router()
 ProductRouter.get('/',GetAllProducts)
 ProductRouter.post('/',AddProduct)
 ProductRouter.put('/:id',UpdateProduct)
+ProductRouter.delete('/:id',DeleteProduct)
+

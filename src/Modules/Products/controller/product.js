@@ -41,3 +41,13 @@ export const UpdateProduct=async(req,res,next)=>{
         return error.message
     }
 }
+
+export const DeleteProduct=async(req,res,next)=>{
+    try {
+       const {id}=req.params
+       const product=await productModel.findByIdAndDelete(id)
+       return res.json({message:'success,product deleted',product})
+    } catch (error) {
+        return error.message
+    }
+}
