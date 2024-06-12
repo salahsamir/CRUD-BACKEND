@@ -1,19 +1,20 @@
 import categoryModel from "../../../../db/Models/Category_shema.js"
+import { AsyncHandeller } from "../../../Utils/ErrorHandling.js"
 
 
-export const AddCategory=async(req,res,next)=>{
-    try {
+export const AddCategory=AsyncHandeller(
+    async(req,res,next)=>{
+  
         const {name}=req.body
-        if(categoryModel.findOne({name})){
-            return res.json('category already exist')
+        if(await categoryModel.findOne({name})){
+            return next(new Error('category already exist',{cause:404}))
         }
         const category=await categoryModel.create(req.body)
-        return res.json(category)
+        return res.status(200).json({message:'created successfully',created:true,category})
         
-    } catch (error) {
-        return error.message
-    }
+   
 }
+)
 
 export const GetAllCategory=async(req,res,next)=>{
     try {

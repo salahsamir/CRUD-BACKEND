@@ -7,9 +7,8 @@ let shema=new Schema({
         type:String,
         required:true,
        
-    },
-    image:String
+    }
 })
 
-let categoryModel=model.category||model('category',shema)
-export default categoryModel
+let activityModel=model.activity||model('activity',shema)
+export default activityModel
